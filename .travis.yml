@@ -1,0 +1,17 @@
+after_script:
+  - docker images
+
+before_script:
+  - cd "$VERSION"
+  - IMAGE="bitcoin-core:${VERSION/\//-}"
+
+env:
+  - VERSION=0.18/alpine
+
+language: bash
+
+script:
+  - docker build -t "$IMAGE" .
+  - docker run "$IMAGE" --version | grep "Bitcoin Core"
+
+services: docker
