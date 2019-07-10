@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-LABEL maintainer.0="Dendi Suhubdy (@dendisuhubdy)" \
+LABEL maintainer.0="Dendi Suhubdy (@dendisuhubdy)"
 
 RUN useradd -r bitcoin \
     && apt-get update -y \
