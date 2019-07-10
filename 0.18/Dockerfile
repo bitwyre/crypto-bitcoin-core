@@ -21,6 +21,7 @@ RUN curl -SL https://bitcoin.org/laanwj-releases.asc | gpg --batch --import \
     && rm *.tar.gz *.asc
 
 COPY docker-entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 VOLUME ["/home/bitcoin/.bitcoin"]
 
