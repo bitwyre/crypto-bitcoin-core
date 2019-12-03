@@ -74,7 +74,9 @@ RUN ./autogen.sh && \
 # Stage 2 - Production Image
 
 FROM ubuntu:18.04
-LABEL authors="Dendi Suhubdy (dendi@bitwyre.com), Yefta Sutanto (yefta@bitwyre.com), Aditya Kresna (kresna@bitwyre.com)"
+LABEL maintainer.0="Dendi Suhubdy (dendi@bitwyre.com)" \
+      maintainer.1="Yefta Sutanto (yefta@bitwyre.com)" \
+      maintainer.2="Aditya Kresna (kresna@bitwyre.com)"
 
 RUN useradd -r bitcoin && \
     apt-get update && \
