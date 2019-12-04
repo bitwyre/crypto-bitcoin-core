@@ -35,18 +35,26 @@ RUN cd /app/src/bitcoin/depends/x86_64-pc-linux-gnu && \
 # Stage 2 - Production Image
 
 FROM ubuntu:18.04
+
 LABEL maintainer.0="Dendi Suhubdy (dendi@bitwyre.com)" \
     maintainer.1="Yefta Sutanto (yefta@bitwyre.com)" \
     maintainer.2="Aditya Kresna (kresna@bitwyre.com)"
 
-RUN useradd -r bitcoin
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gosu && \
+    rm -rf /var/lib/apt/lists/* && \
+    useradd -r bitcoin
 RUN mkdir -p /home/bitcoin/.bitcoin && \
     chown -R bitcoin /home/bitcoin
-USER bitcoin
 
 COPY --from=builder /app/src/bitcoin/depends/x86_64-pc-linux-gnu /usr/local
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
 
 VOLUME ["/home/bitcoin/.bitcoin"]
 EXPOSE 8332 8333 18332 18333 18443 18444 28332 28333 28334 28335
 
+ENV BITCOIN_DATA = "/home/bitcoin/.bitcoin"
+
+ENTRYPOINT [ "/./docker-entrypoint.sh" ]
 CMD ["bitcoind"]
