@@ -2,11 +2,10 @@ after_script:
   - docker images
 
 before_script:
-  - cd "$VERSION"
   - IMAGE="bitcoin-core:${VERSION/\//-}"
 
 env:
-  - VERSION=0.18
+  - VERSION=0.19
 
 language: bash
 
