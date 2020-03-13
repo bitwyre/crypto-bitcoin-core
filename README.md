@@ -1,6 +1,10 @@
-# Internal Docker Container for Bitcoin Core
+# Bitwyre's Bitcoin Core
 
-For internal use only.
+[![Docker Stars](https://img.shields.io/docker/stars/bitwyre/crypto-bitcoin-core.svg)](https://hub.docker.com/r/bitwyre/crypto-bitcoin-core/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bitwyre/crypto-bitcoin-core.svg)](https://hub.docker.com/r/bitwyre/crypto-bitcoin-core/)
+[![ImageLayers](https://images.microbadger.com/badges/image/bitwyre/crypto-bitcoin-core.svg)](https://microbadger.com/images/bitwyre/crypto-bitcoin-core)
+
+Runs the Bitcoin Core bitcoind full-node in a container.
 
 Copyright (C) 2019, Bitwyre Technologies LLC.
 
