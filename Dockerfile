@@ -14,12 +14,12 @@ RUN echo "\nSubmodule files:"&& \
     gcc --version && \
     cd depends && \
     mkdir x86_64-pc-linux-gnu && \
-    make -j8
+    BITCOIN_GENBUILD_NO_GIT=1 make -j$(nproc)
 RUN ./autogen.sh && \
     ./configure LDFLAGS="-static-libstdc++" --prefix="/app/src/bitcoin/depends/x86_64-pc-linux-gnu" \
     --without-miniupnpc --enable-hardening --with-zmq --disable-man --disable-shared \
-    --disable-bench --disable-test --without-gui --enable-cxx
-RUN make install -j8
+    --disable-bench --disable-tests --without-gui --enable-cxx
+RUN BITCOIN_GENBUILD_NO_GIT=1 make install -j$(nproc)
 RUN cd /app/src/bitcoin/depends/x86_64-pc-linux-gnu && \
     ls -Falg --group-directories-first && \
     strip bin/bitcoind && \
@@ -33,7 +33,7 @@ RUN cd /app/src/bitcoin/depends/x86_64-pc-linux-gnu && \
 
 FROM ubuntu:18.04
 
-LABEL maintainer "Dendi Suhubdy (dendi@bitwyre.com), Yefta Sutanto (yefta@bitwyre.com), Aditya Kresna (kresna@bitwyre.com)"
+LABEL maintainer "Dendi Suhubdy <dendi@bitwyre.com>, Yefta Sutanto <yefta@bitwyre.com>, Aditya Kresna <kresna@bitwyre.com>"
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gosu && \

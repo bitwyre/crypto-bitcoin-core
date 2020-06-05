@@ -6,7 +6,7 @@
 
 Runs the Bitcoin Core bitcoind full-node in a container.
 
-Copyright (C) 2019, Bitwyre Technologies LLC.
+Copyright (C) 2020, Bitwyre Technologies LLC.
 
 ## Authors
 
